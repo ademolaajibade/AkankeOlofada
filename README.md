@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Elépo
 
-## Getting Started
+Nigerian sauces and sides, sold by the litre — built around Elépo's
+signature ayamashe. Next.js 16 (App Router) + TypeScript + Tailwind v4.
+No backend: the cart lives in `localStorage`, and checkout hands the
+order to WhatsApp as a prefilled message.
 
-First, run the development server:
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. `npm run build && npm run start` for a
+production build, `npm run lint` for ESLint.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Before this goes live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Everything vendor-specific is centralized so a real launch is a
+content edit, not a code change:
 
-## Learn More
+- **`src/config/site.ts`** — business name, tagline, WhatsApp number,
+  Instagram, email, address, hours, delivery areas/minimum. The
+  WhatsApp number is a placeholder (`2348000000000`) — replace it with
+  the real one, digits only, country code first, no `+`.
+- **`src/lib/menu.ts`** — every dish: sizes, prices (₦), spice levels,
+  descriptions, and the "Yeye's note" line under each item. Prices
+  here are realistic placeholders, not sourced pricing — adjust freely.
 
-To learn more about Next.js, take a look at the following resources:
+## How ordering works
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+There's no payment integration on purpose — WhatsApp ordering is how
+this market actually transacts. A customer builds a cart across
+`/menu`, reviews it and fills in delivery details on `/order`, and
+"Send order to Yeye on WhatsApp" opens `wa.me` with the itemized order
+already typed out. Nothing is charged in-app; confirmation happens in
+the chat.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
+```
+src/
+  app/            home, /menu, /order — the three routes
+  components/     Header, Footer, MenuItemCard (the add-to-cart unit),
+                  ThemeToggle, hand-drawn brand icons
+  lib/            menu data, cart context (+ localStorage), currency
+                  formatting, WhatsApp message builder
+  config/site.ts  business identity & contact details
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Dark is the primary theme — it's the colour ayamashe actually turns
+once the palm oil is bleached and cooked down. Light is the same
+kitchen by day. Both follow the visitor's system preference by
+default; the toggle in the header overrides and remembers the choice.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+No product photography is used — the site leans on typography and a
+small set of hand-drawn line icons (pot, ladle, pepper, leaf) instead
+of stock imagery.
+# AkankeOlofada
