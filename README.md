@@ -1,4 +1,4 @@
-# Elépo
+# AkankeOlofada
 
 Nigerian sauces and sides, sold by the litre — built around Elépo's
 signature ayamashe. Next.js 16 (App Router) + TypeScript + Tailwind v4.
@@ -57,4 +57,4 @@ default; the toggle in the header overrides and remembers the choice.
 No product photography is used — the site leans on typography and a
 small set of hand-drawn line icons (pot, ladle, pepper, leaf) instead
 of stock imagery.
-# AkankeOlofada
+
