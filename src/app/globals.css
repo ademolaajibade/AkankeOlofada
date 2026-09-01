@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------
+   Tokens. The palette isn't decorative — it's the pot. Ayamashe, done
+   right, cooks down to a deep bottle-green-black sheen; that colour is
+   the site's ground, not an accent. Dark is the primary mode; light is
+   the same kitchen by day.
+   ------------------------------------------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ground: #14170f;
+  --surface: #1d2317;
+  --surface-2: #232b1b;
+  --ink: #f3ecd9;
+  --ink-muted: #b3a98e;
+  --accent: #e4572e;
+  --accent-ink: #1c0f08;
+  --accent-2: #c89b3c;
+  --line: #333f28;
+}
+
+html.light {
+  --ground: #ede6d3;
+  --surface: #e2d9bf;
+  --surface-2: #d8cda9;
+  --ink: #201b10;
+  --ink-muted: #635c45;
+  --accent: #c6491f;
+  --accent-ink: #fff6ea;
+  --accent-2: #85641c;
+  --line: #c9bd9b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-2: var(--accent-2);
+  --color-line: var(--line);
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-work-sans);
+  --font-mono: var(--font-plex-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--line);
+}
+
+html {
+  color-scheme: dark;
+}
+html.light {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  text-wrap: balance;
+}
+
+.font-mono-num {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.prose-copy {
+  max-width: 62ch;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
