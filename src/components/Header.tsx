@@ -24,7 +24,7 @@ export function Header() {
             Menu
           </Link>
           <Link href="/#story" className="transition-colors hover:text-ink">
-            Yeye&rsquo;s story
+            My story
           </Link>
           <Link href="/#faq" className="transition-colors hover:text-ink">
             FAQ
