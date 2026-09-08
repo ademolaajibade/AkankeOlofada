@@ -58,9 +58,63 @@ html.light {
 }
 
 body {
+  position: relative;
   background: var(--ground);
   color: var(--ink);
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Ambient ground — a slow-drifting suggestion of oil and pepper light
+   behind the page, instead of a flat fill. Fixed so it reads as one
+   continuous atmosphere as you scroll, not a per-section gradient. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -15%;
+  z-index: -2;
+  background:
+    radial-gradient(32% 28% at 22% 4%, color-mix(in srgb, white 22%, var(--accent-2) 78%), transparent 68%),
+    radial-gradient(38% 32% at 12% 8%, color-mix(in srgb, var(--accent) 32%, transparent), transparent 70%),
+    radial-gradient(44% 38% at 88% 18%, color-mix(in srgb, var(--accent-2) 28%, transparent), transparent 72%),
+    radial-gradient(50% 42% at 50% 95%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 75%),
+    radial-gradient(60% 50% at 100% 100%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 80%);
+  opacity: 0.7;
+  animation: ground-drift 28s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+html.light body::before {
+  background:
+    radial-gradient(40% 34% at 22% 2%, color-mix(in srgb, white 78%, var(--accent) 22%), transparent 70%),
+    radial-gradient(38% 32% at 12% 8%, color-mix(in srgb, var(--accent) 42%, transparent), transparent 70%),
+    radial-gradient(44% 38% at 88% 18%, color-mix(in srgb, var(--accent-2) 38%, transparent), transparent 72%),
+    radial-gradient(50% 42% at 50% 95%, color-mix(in srgb, var(--accent-2) 28%, transparent), transparent 75%),
+    radial-gradient(60% 50% at 100% 100%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 80%);
+  opacity: 0.85;
+}
+
+/* Fine grain so the ground has texture rather than a flat gradient. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+@keyframes ground-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-2.5%, 2%, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(2%, -2.5%, 0) scale(1.03);
+  }
 }
 
 h1, h2, h3, h4 {
