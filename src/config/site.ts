@@ -19,7 +19,7 @@ export const site = {
   email: "hello@akankeolofada.example",
 
   address: {
-    line: "Along Abule-egba Road, by the old bus park canteen",
+    line: "Along Olaniyan Road, Abule-egba",
     area: "Abule-egba, Lagos",
   },
 
@@ -30,10 +30,10 @@ export const site = {
   ],
 
   deliveryAreas: [
-    "Ikorodu, Ojota, Ketu, Mile 12 — same-day",
+    "Abule-egba, Fagba — same-day",
     "Rest of Lagos — next-day, rider fee quoted on WhatsApp",
     "Outside Lagos — vacuum-sealed and sent by interstate park, 2–4 days",
   ],
 
-  deliveryMinimum: 10000, // naira, delivery orders outside pickup
+  deliveryMinimum: 2000, // naira, delivery orders outside pickup
 } as const;
