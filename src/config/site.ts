@@ -14,7 +14,7 @@ export const site = {
 
   // Ordering contact — a WhatsApp order is built client-side and opened
   // as a wa.me link. Digits only, country code included, no leading +.
-  whatsappNumber: "2348000000000",
+  whatsappNumber: "2348012345678",
   instagramHandle: "@akankeolofada.kitchen",
   email: "hello@akankeolofada.example",
 
