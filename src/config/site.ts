@@ -20,7 +20,7 @@ export const site = {
 
   address: {
     line: "Along Olaniyan Road, Abule-egba",
-    area: "Abule-egba, Lagos",
+    area: "Abule-egba, Lagos.",
   },
 
   hours: [
